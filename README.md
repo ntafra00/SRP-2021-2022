@@ -4,8 +4,6 @@
 
 U okviru prve vježbe analizirali smo ranjivost ARP-koja napadaču omogućava izvođenje ***man in the middle*** i ***denial of service*** napada na računalima koja dijele zajedničku lokalnu mrežu(LAN).
 
-![Untitled](Sigurnost%20rac%CC%8Cunala%20i%20podataka%20c78f3e9ee3e042fcba58b7d253374022/Untitled.png)
-
 Napad je testiran koristeći 3 virtualizirana Docker računala: dvije žrtve station-1 i station-2 te napadač evil-station.
 
 Budući da je vježba rađena na računalu sa Windows operacijskim sustavom, prvi zadatak bilo je pokretanje Ubuntu terminala koristeći WSL (Windows Subsystem for Linux).
