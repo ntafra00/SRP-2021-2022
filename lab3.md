@@ -20,9 +20,9 @@ Pri tome smo koristili HMAC mehanizam iz Python biblioteke cryptography
 
 Kreirali smo datoteku imena message.txt proizvoljnog sadržaja čiji smo integritet htjeli zaštititi.
 
-Na temelju pročitanog sadržaja iz datoteke i proizvoljno unesenog ključa generirali smo MAC pomoću funkcije generate_MAC te smo ga spremili u file imena message.sig.
+Na temelju pročitanog sadržaja iz datoteke i proizvoljno unesenog ključa generirali smo MAC pomoću funkcije ***generate_MAC*** te smo ga spremili u file imena message.sig.
 
-Unutar funkcije verify_MAC smo usporedili novostvoreni MAC s onim kojeg smo poslali kao argument funkcije.
+Unutar funkcije ***verify_MAC*** smo usporedili novostvoreni MAC s onim kojeg smo poslali kao argument funkcije.
 
 ```python
 from cryptography.hazmat.primitives import hashes, hmac
@@ -79,11 +79,11 @@ http://a507-server.local
 
 Pomoću GNU Wget softvera smo skinuli sve potrebne file-ove sa gore navedenog servera.
 
-Unutar funkcije checkIfAuthentic smo vršili provjeru je li traženi MAC dobivenom kombinacijom odgovarajuće poruke i ključa. 
+Unutar funkcije ***checkIfAuthentic*** smo vršili provjeru je li traženi MAC dobivenom kombinacijom odgovarajuće poruke i ključa. 
 
 U slučaju da je, spremili bismo sadržaj poruke u napravljenu listu valid.
 
-Funkcija exractOrderDateTime poslužila je kao pomoć pri sortiranju transakcija.
+Funkcija ***extractOrderDateTime*** poslužila je kao pomoć pri sortiranju transakcija.
 
 ```python
 from os import read
