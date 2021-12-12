@@ -1,8 +1,9 @@
 # MESSAGE AUTHENTICATION AND INTEGRITY
 
-Datum: 09.11.2021.
+Datum: 09.11.2021. / 07.12.2021.
 
-Cilj treće laboratorijske vježbe bila je primjena teoretske spoznaje o osnovnim kriptografskim mehanizmima za autentikaciju i zaštitu integriteta poruka. Koristili smo simetrični kripto sustav: ***message authentication code (MAC)***
+Cilj treće laboratorijske vježbe bila je primjena teoretske spoznaje o osnovnim kriptografskim mehanizmima za autentikaciju i zaštitu integriteta poruka. Koristili smo simetrične i asimetrične kripto sustave: ***message authentication code (MAC)*** i ***digitalne potpise*** zasnovane na javnim ključevima.
+
 
 # Uvod
 
@@ -153,4 +154,61 @@ if __name__ == "__main__":
 	key = "tafra_nikola".encode()
 	path = os.path.join("challenges","tafra_nikola", "mac_challenge")
 	checkIfAuthentic(path,key)
+```
+
+# Zadatak 3
+
+U ovome zadatku bavili smo se problemom public-key kriptografije.
+
+Sa servera smo dohvatili dvije slike i odgovarajuće digitalne potpise.
+
+Slike je profesor potpisao koristeći svoj privatni ključ.
+
+Na temelju danog javnog ključa kojeg smo pročitali iz datoteke ***public.pem***  određivali smo koja je od dvije slike autentična. 
+
+## Rješenje
+
+```python
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+from cryptography.exceptions import InvalidSignature
+
+def load_public_key():
+	with open("public.pem", "rb") as f:
+		PUBLIC_KEY = serialization.load_pem_public_key(
+		f.read(),
+		backend=default_backend()
+		)
+	return PUBLIC_KEY
+
+def verify_signature_rsa(signature, message):
+	PUBLIC_KEY = load_public_key()
+	try:
+		PUBLIC_KEY.verify(
+			signature,
+			message,
+			padding.PSS(
+				mgf=padding.MGF1(hashes.SHA256()),
+				salt_length=padding.PSS.MAX_LENGTH
+			),
+			hashes.SHA256()
+		)
+	except InvalidSignature:
+		return False
+	else:
+		return True
+
+if __name__ == "__main__":
+
+	# Reading from a file
+	with open("image_2.sig", "rb") as file:
+		signature = file.read()
+
+	with open("image_2.png", "rb") as file:
+		image = file.read()
+
+	is_authentic = verify_signature_rsa(signature, image)
+	print(is_authentic)
 ```
