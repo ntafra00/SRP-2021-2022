@@ -9,3 +9,5 @@ laboratorijska vježba 3 - Message authentication and integrity (lab3.md)
 laboratorijska vježba 4 - Password hashing (iterative hashing, salt, memory-hard functions) (lab4.md)
 
 laboratorijska vježba 5 - Online and Offline Password Guessing (lab5.md)
+
+laboratorijska vježba 6 - Linux permissions and ACLs
